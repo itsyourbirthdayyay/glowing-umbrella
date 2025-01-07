@@ -1,42 +1,32 @@
-// Wait for DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', () => {
-    // Get all required elements
-    const form = document.getElementById('riddleForm');
-    const passwordInput = document.getElementById('password');
-    const errorMessage = document.getElementById('errorMessage');
-    const successMessage = document.getElementById('successMessage');
-    const tryAgainButton = document.getElementById('tryAgainButton');
+window.onload = function() {
+    // Get elements
+    var form = document.getElementById('riddleForm');
+    var input = document.getElementById('password');
+    var error = document.getElementById('errorMessage');
+    var success = document.getElementById('successMessage');
+    var tryAgain = document.getElementById('tryAgainButton');
 
-    const correctPassword = 'spielberg';
-
-    // Handle form submission
-    form.addEventListener('submit', (e) => {
+    // Handle form submit
+    form.onsubmit = function(e) {
         e.preventDefault();
         
-        if (passwordInput.value.toLowerCase() === correctPassword.toLowerCase()) {
-            // Hide form and error message
+        if (input.value.toLowerCase() === 'spielberg') {
             form.style.display = 'none';
-            errorMessage.classList.add('hidden');
-            
-            // Show success message and try again button
-            successMessage.classList.remove('hidden');
-            tryAgainButton.classList.remove('hidden');
+            error.classList.add('hidden');
+            success.classList.remove('hidden');
+            tryAgain.classList.remove('hidden');
         } else {
-            // Show error message
-            errorMessage.classList.remove('hidden');
-            successMessage.classList.add('hidden');
+            error.classList.remove('hidden');
+            success.classList.add('hidden');
         }
-    });
+    };
 
     // Handle try again button
-    tryAgainButton.addEventListener('click', () => {
-        // Reset form
+    tryAgain.onclick = function() {
         form.style.display = 'flex';
-        passwordInput.value = '';
-        
-        // Hide messages and button
-        errorMessage.classList.add('hidden');
-        successMessage.classList.add('hidden');
-        tryAgainButton.classList.add('hidden');
-    });
-});
+        input.value = '';
+        error.classList.add('hidden');
+        success.classList.add('hidden');
+        tryAgain.classList.add('hidden');
+    };
+};
